@@ -1,0 +1,20 @@
+1. create new react app ✅
+2. remove default page and css. ✅
+3. install bootstarp.✅
+4. import bootstrap.✅
+5. render table.✅
+6. useState for data.✅
+7. map data to present data in table using jsx.✅
+8. interactive table (actions). 
+		a- remove button. ✅
+		b- add new row. ✅
+			1. render form. ✅
+			2. state form inputs form. ✅
+			3. handleInputs function. ✅
+			4. handleSubmit function. ✅
+ 		c- present Single row.
+9. break down into components
+9. fetch data from api.
+10. remove data.
+11. add data.
+12. single page.
