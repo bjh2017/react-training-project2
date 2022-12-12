@@ -14,7 +14,7 @@ const Tbody = ({ data, columns }) => {
       {data.map((row) => (
         <tr key={row.id}>
           {columns.map((c) => (
-            <td>{_.get(row, c.path) || c.content(row.id)}</td>
+            <td>{_.get(row, c.path) || c.content(row)}</td>
           ))}
         </tr>
       ))}
