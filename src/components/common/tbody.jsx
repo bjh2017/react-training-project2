@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-const Tbody = ({ data, handleRemove, handleEdit, columns }) => {
+const Tbody = ({ data, columns }) => {
   // const pickPropertyValue = (obj, property) => {
   //   let pickedValue;
   //   Object.keys(obj).forEach((k) => {

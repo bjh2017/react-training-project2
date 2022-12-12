@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import Table from "./components/table";
+import Table from "./components/common/table";
 import Form from "./components/form";
 
 function App() {
@@ -32,6 +32,34 @@ function App() {
       ),
     },
   ];
+
+  const [products, setProducts] = useState([
+    { id: 1, title: "Mark", brand: "Otto", qty: 10, price: "10$" },
+    { id: 2, title: "Jack", brand: "Morio", qty: 4, price: "10$" },
+    { id: 3, title: "Zelicka", brand: "Toni", qty: 9, price: "10$" },
+  ]);
+
+  const productColumns = [
+    { path: "id", label: "ID" },
+    { path: "title", label: "Title" },
+    { path: "brand", label: "Brand" },
+    { path: "qty", label: "Quantity" },
+    { path: "price", label: "Price" },
+    {
+      label: "Show",
+      content: (item) => (
+        <>
+          <button className="btn btn-success" onClick={() => showProduct(item)}>
+            Show Product
+          </button>
+        </>
+      ),
+    },
+  ];
+
+  const showProduct = (item) => {
+    alert(item.toString());
+  };
 
   const [values, setValues] = useState({
     id: null,
@@ -98,12 +126,7 @@ function App() {
     <div className="container">
       <div className="row mt-5">
         <div className="col-8">
-          <Table
-            columns={columns}
-            data={data}
-            handleRemove={handleRemove}
-            handleEdit={handleEdit}
-          />
+          <Table columns={columns} data={data} />
         </div>
         <div className="col-4">
           <Form
@@ -111,6 +134,11 @@ function App() {
             handleInput={handleInput}
             handleSubmit={handleSubmit}
           />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <Table data={products} columns={productColumns} />
         </div>
       </div>
     </div>
