@@ -1,5 +1,5 @@
-import Button from "./button";
-import Input from "./input";
+import Button from "./common/button";
+import Input from "./common/input";
 
 const Form = ({ values, handleInput, handleSubmit }) => {
   return (
@@ -22,7 +22,7 @@ const Form = ({ values, handleInput, handleSubmit }) => {
         name="handle"
         handleInput={handleInput}
       />
-      <Button label="Add" />
+      <Button label="Submit" />
     </form>
   );
 };

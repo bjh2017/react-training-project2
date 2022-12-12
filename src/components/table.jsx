@@ -1,11 +1,16 @@
-import HeadTable from "./headTable";
-import TbodyTable from "./tbodyTable";
+import Thead from "./thead";
+import Tbody from "./tbody";
 
-const Table = ({ data, handleRemove }) => {
+const Table = ({ data, handleRemove, handleEdit, columns }) => {
   return (
     <table className="table ">
-      <HeadTable />
-      <TbodyTable data={data} handleRemove={handleRemove} />
+      <Thead columns={columns} />
+      <Tbody
+        columns={columns}
+        data={data}
+        handleRemove={handleRemove}
+        handleEdit={handleEdit}
+      />
     </table>
   );
 };
