@@ -55,15 +55,15 @@ const Users = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // // validation
-    // let empty = false;
-    // Object.keys(values).forEach((key) => {
-    //   if (values[key].length < 1) empty = true;
-    // });
-    // // ["first", "last", "handle"]
-    // if (empty) {
-    //   alert("All Form Fields Are Required!!!");
-    //   return;
-    // }
+    let empty = false;
+    Object.keys(values).forEach((key) => {
+      if (key !== "id" && values[key].length < 1) empty = true;
+    });
+    // ["first", "last", "handle"]
+    if (empty) {
+      alert("All Form Fields Are Required!!!");
+      return;
+    }
 
     if (values.id) {
       // edit
