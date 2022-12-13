@@ -1,19 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "./common/table";
 import Form from "./form";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Users = () => {
-  const [users, setUsers] = useState([
-    { id: 1, first: "Mark", last: "Otto", handle: "admin" },
-    { id: 2, first: "Jack", last: "Morio", handle: "superviser" },
-    { id: 3, first: "Zelicka", last: "Toni", handle: "writer" },
-  ]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data));
+  }, []);
 
   const userColumns = [
     { path: "id", label: "ID" },
-    { path: "first", label: "First Name" },
-    { path: "last", label: "Last Name" },
-    { path: "handle", label: "Permissions" },
+    {
+      label: "Username",
+      content: (item) => <Link to={`/users/${item.id}`}>{item.username}</Link>,
+    },
+    { path: "name", label: "Full Name" },
+    { path: "email", label: "Email" },
     {
       label: "Actions",
       content: (item) => (
@@ -24,9 +31,15 @@ const Users = () => {
           >
             edit
           </button>
-          <button className="btn btn-danger" onClick={() => handleRemove(item)}>
+          <button
+            className="btn btn-danger me-2"
+            onClick={() => handleRemove(item)}
+          >
             delete
           </button>
+          <Link to={`/users/${item.id}`} className="btn btn-primary">
+            profile
+          </Link>
         </>
       ),
     },
@@ -34,9 +47,9 @@ const Users = () => {
 
   const [values, setValues] = useState({
     id: null,
-    first: "",
-    last: "",
-    handle: "",
+    name: "",
+    username: "",
+    email: "",
   });
 
   const handleRemove = (item) => {
@@ -61,7 +74,16 @@ const Users = () => {
     });
     // ["first", "last", "handle"]
     if (empty) {
-      alert("All Form Fields Are Required!!!");
+      toast.error("All Form Fields Are Required!!!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       return;
     }
 
@@ -72,24 +94,23 @@ const Users = () => {
       const index = users.findIndex((row) => row.id === values.id);
       newData[index] = newObj;
       setUsers(newData);
-      setValues({ id: null, first: "", last: "", handle: "" });
     } else {
       // add
       const newObj = { ...values };
       newObj.id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
       const newData = [...users, newObj];
       setUsers(newData);
-      setValues({ id: null, first: "", last: "", handle: "" });
     }
+    setValues({ id: null, name: "", username: "", email: "" });
   };
 
   const handleEdit = (item) => {
     const element = users.find((row) => row.id === item.id);
     setValues({
       id: element.id,
-      first: element.first,
-      last: element.last,
-      handle: element.handle,
+      name: element.name,
+      username: element.username,
+      email: element.email,
     });
   };
 

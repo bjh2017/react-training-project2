@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Table from "./common/table";
 
 const Products = () => {
@@ -10,7 +11,10 @@ const Products = () => {
 
   const productColumns = [
     { path: "id", label: "ID" },
-    { path: "title", label: "Title" },
+    {
+      label: "Title",
+      content: (item) => <Link to={`/products/${item.id}`}>{item.title}</Link>,
+    },
     { path: "brand", label: "Brand" },
     { path: "qty", label: "Quantity" },
     { path: "price", label: "Price" },

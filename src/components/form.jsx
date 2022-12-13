@@ -5,22 +5,23 @@ const Form = ({ values, handleInput, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Input
-        label="First Name"
-        value={values.first}
-        name="first"
+        label="Fullname"
+        value={values.name}
+        name="name"
         handleInput={handleInput}
       />
       <Input
-        label="Last Name"
-        value={values.last}
-        name="last"
+        label="Username"
+        value={values.username}
+        name="username"
         handleInput={handleInput}
       />
       <Input
-        label="Handle"
-        value={values.handle}
-        name="handle"
+        label="Email"
+        value={values.email}
+        name="email"
         handleInput={handleInput}
+        type="emial"
       />
       <Button label="Submit" />
     </form>
