@@ -13,8 +13,8 @@ const Tbody = ({ data, columns }) => {
     <tbody>
       {data.map((row) => (
         <tr key={row.id}>
-          {columns.map((c) => (
-            <td>{_.get(row, c.path) || c.content(row)}</td>
+          {columns.map((c, ci) => (
+            <td key={ci}>{_.get(row, c.path) || c.content(row)}</td>
           ))}
         </tr>
       ))}

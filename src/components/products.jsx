@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "./common/table";
+import ProductForm from "./productForm";
 
 const Products = () => {
   const [products, setProducts] = useState([
@@ -34,6 +35,7 @@ const Products = () => {
   const showProduct = (item) => {
     alert(JSON.stringify(item));
   };
+
   return (
     <div className="row">
       <div className="col-12">
@@ -42,7 +44,9 @@ const Products = () => {
       <div className="col-8">
         <Table data={products} columns={productColumns} />
       </div>
-      <div className="col-4"></div>
+      <div className="col-4">
+        <ProductForm data={products} setData={setProducts} />
+      </div>
     </div>
   );
 };
